@@ -19,7 +19,7 @@ const dispatch = useAppDispatch();
   return (
     <div >
    <Header />
-   <Table /> 
+ <Table />
    <Footer />
     </div>
   )

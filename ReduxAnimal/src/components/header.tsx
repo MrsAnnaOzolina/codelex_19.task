@@ -4,6 +4,8 @@ import { useAppDispatch, useAppSelector } from "./app/hooks";
 
 import { Animal, setLoading, setShowallAnimals } from "./app/animalSlice"
 
+
+
 const Values = {
   id: "",
   name: "",
@@ -24,6 +26,7 @@ function Header() {
   const dispatch = useAppDispatch()
 
 
+
   const handleInputChange = (g: any) => {
     const target = g.target;
     const value = target.value;
@@ -40,14 +43,36 @@ function Header() {
 
   const saveChangesSubmit = (e: any) => {
     e.preventDefault();
+    if(!valuesToSave.name && !valuesToSave.image && !valuesToSave.species){
+      alert("no values added")
+    }
+     else if  (valuesToSave.name.length < 3 ){
+      alert("Name should contain atleast 3 characters")
+    } else if (!valuesToSave.name.match(/^[A-Za-z]+$/)) {
+      alert("Name should contain letters")
+     } else if(valuesToSave.name.length > 30) {
+      alert("Name shouldn't be longer then 30 characters")
+     }
+     else if (!valuesToSave.image.match(/jpg/) && !valuesToSave.image.match(/png/) && !valuesToSave.image.match(/webp/) && !valuesToSave.image.match(/gif/)) {
+      alert("link doesn't contain jpg, png, webp, gif formats")
+     }  
+     else if (!valuesToSave.image.match(/^(ftp|http|https):\/\/[^ "]+$/)) {
+      alert("not correct format to picture link")
+     }
+     else {
+
     setAllValuesSaved([...allValuesSaved, valuesToSave])
     setShowAddAnimalInput(false);
     localStorage.setItem("animals", JSON.stringify(allValuesSaved));
-
+    
+     }
   }
 
   localStorage.setItem("animals", JSON.stringify(allValuesSaved));
   dispatch(setShowallAnimals(allValuesSaved))
+
+
+  
 
   return (
 
@@ -59,7 +84,6 @@ function Header() {
       <button onClick={() => setShowAddAnimalInput(!showAddAnimalInput)}>Add Animal</button>
       {showAddAnimalInput &&
         <>
-
           <form
             action=""
             onSubmit={(e) => { saveChangesSubmit(e) }}
@@ -84,30 +108,28 @@ function Header() {
               name="species"
               onChange={(e) => handleInputChange(e)}
             >
-              <option value="bovid">Bovid</option>
-              <option value="feline">Feline</option>
-              <option value="canine">Canine</option>
-              <option value="mustelid">Mustelid</option>
-              <option value="hominid">Hominid</option>
-              <option value="cricetid">Cricetid rodent</option>
-              <option value="cervid">Cervid</option>
-              <option value="beaver">Beaver</option>
-              <option value="hyena">Hyene</option>
-              <option value="hippopotamus">Hippopotamus</option>
-              <option value="procyonid">Procyonid</option>
-              <option value="manatee">Manatee</option>
-              <option value="anteater">Anteater</option>
-              <option value="cebidae">Cebidae</option>
-              <option value="viverrid">Viverid</option>
-              <option value="cercopithecidea">Cercopithecidea</option>
+              <option value="Bovid">Bovid</option>
+              <option value="Feline">Feline</option>
+              <option value="Canine">Canine</option>
+              <option value="Mustelid">Mustelid</option>
+              <option value="Hominid">Hominid</option>
+              <option value="Cricetid Rodent">Cricetid rodent</option>
+              <option value="Cervid">Cervid</option>
+              <option value="Beaver">Beaver</option>
+              <option value="Hyena">Hyene</option>
+              <option value="Hippopotamus">Hippopotamus</option>
+              <option value="Procyonid">Procyonid</option>
+              <option value="Manatee">Manatee</option>
+              <option value="Anteater">Anteater</option>
+              <option value="Cebidae">Cebidae</option>
+              <option value="Viverrid">Viverid</option>
+              <option value="Cercopithecidea">Cercopithecidea</option>
             </select>
             <button>save my values</button>
           </form>
-          {/* 
-    <button onClick={()=> { localStorage.setItem("animals", JSON.stringify(allValuesSaved));
-}}>Add to list</button> */}
         </>
       }
+
     </section>
   )
 }
