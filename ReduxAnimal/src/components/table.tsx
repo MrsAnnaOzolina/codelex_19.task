@@ -1,7 +1,7 @@
 
 import { useEffect,useState } from "react"
 import { useAppDispatch, useAppSelector } from "./app/hooks";
-import {Animal, setLoading, setShowallAnimals } from "./app/counterSlice"
+import {Animal, setLoading, setShowallAnimals } from "./app/animalSlice"
 
 const Table =() => {
 const [hideTable, setHideTable] = useState(true)

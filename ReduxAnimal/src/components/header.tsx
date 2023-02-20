@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { v4 as uuidv4 } from 'uuid';
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 
-import { Animal, setLoading, setShowallAnimals } from "./app/counterSlice"
+import { Animal, setLoading, setShowallAnimals } from "./app/animalSlice"
 
 const Values = {
   id: "",
