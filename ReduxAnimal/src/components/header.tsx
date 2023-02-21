@@ -51,7 +51,7 @@ function Header() {
      } else if(valuesToSave.name.length > 30) {
       alert("Name shouldn't be longer then 30 characters")
      }
-     else if (!valuesToSave.image.match(/jpg/) && !valuesToSave.image.match(/png/) && !valuesToSave.image.match(/webp/) && !valuesToSave.image.match(/gif/)) {
+     else if (!valuesToSave.image.match(/jpg/) && !valuesToSave.image.match(/png/) && !valuesToSave.image.match(/webp/) && !valuesToSave.image.match(/gif/) ) {
       alert("link doesn't contain jpg, png, webp, gif formats")
      }  
      else if (!valuesToSave.image.match(/^(ftp|http|https):\/\/[^ "]+$/)) {
