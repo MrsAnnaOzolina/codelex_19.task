@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react"
 import { v4 as uuidv4 } from 'uuid';
 import { useAppDispatch, useAppSelector } from "./app/hooks";
-
-import { Animal, setLoading, setShowallAnimals } from "./app/animalSlice"
-
+import {  setShowallAnimals } from "./app/animalSlice"
+import {  setAddSpecies } from "./app/speciesSlice"
 
 
 const Values = {
@@ -16,16 +15,8 @@ const Values = {
 function Header() {
   const [showAddAnimalInput, setShowAddAnimalInput] = useState(false)
   const [valuesToSave, setValuesToSave] = useState(Values)
-  const [allValuesSaved, setAllValuesSaved] = useState(() => {
-    // getting stored value
-    const saved = localStorage.getItem("animals")!;
-    const initialValue = JSON.parse(saved);
-    return initialValue || [];
 
-  })
   const dispatch = useAppDispatch()
-
-
 
   const handleInputChange = (g: any) => {
     const target = g.target;
@@ -60,19 +51,15 @@ function Header() {
       alert("not correct format to picture link")
      }
      else {
+    dispatch(setShowallAnimals(valuesToSave))
 
-    setAllValuesSaved([...allValuesSaved, valuesToSave])
-    setShowAddAnimalInput(false);
-    localStorage.setItem("animals", JSON.stringify(allValuesSaved));
-    
+    // "Šito vajadzes kad pievienos pareizu input lauku"
+    // if (!speciesList.includes(valuesToSave.species)){
+    //   dispatch(setAddSpecies(valuesToSave.species))
+    // }
+    setShowAddAnimalInput(false);    
      }
   }
-
-  localStorage.setItem("animals", JSON.stringify(allValuesSaved));
-  dispatch(setShowallAnimals(allValuesSaved))
-
-
-  
 
   return (
 
