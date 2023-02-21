@@ -1,10 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import animalSlice from './animalSlice'
-// ...
+import speciesSlice from './speciesSlice'
 
 export const store = configureStore({
   reducer: {
-    myAllAnimals: animalSlice
+    myAllAnimals: animalSlice,
+    myAllSpecies: speciesSlice
     
   },
 })
